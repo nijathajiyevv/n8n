@@ -1,0 +1,54 @@
+﻿a_columns,b_columns,confidence,match_type,reasoning
+loyalty_tier,,0,unmatched,"No corresponding column in System B for loyalty tier (gold, silver, bronze)."
+billing_country_code,,0,unmatched,No corresponding column in System B for billing country code.
+preferred_language,,0,unmatched,No corresponding column in System B for customer preferred language.
+last_login_timestamp,,0,unmatched,No corresponding column in System B for last login timestamp.
+subtotal_amount_usd,order_subtotal; net_amount,0.55,one_to_many,System B has two plausible candidates (order_subtotal and net_amount) both matching the description and sample values; ambiguous which is the exact counterpart.
+discount_amount_usd,,0,unmatched,No corresponding column in System B for discount amount.
+currency_code,,0,unmatched,No corresponding column in System B for order currency code.
+shipping_postal_code,,0,unmatched,No corresponding column in System B for shipping postal code.
+shipping_country_code,,0,unmatched,No corresponding column in System B for shipping country code.
+order_source_channel,,0,unmatched,"No direct match; fulfillment_note contains channel info but is combined with other data, making it unsuitable as a clean mapping."
+gift_wrap_flag,,0,unmatched,"No direct match; order_flags_summary contains gift wrap info but is combined with return flag, making it unsuitable as a clean mapping."
+return_requested_flag,,0,unmatched,"No direct match; order_flags_summary contains return info but is combined with gift wrap flag, making it unsuitable as a clean mapping."
+order_channel_locale,,0,unmatched,No corresponding column in System B for order channel locale.
+category_id,category_key; cat_id,0.55,one_to_many,System B has two plausible candidates (category_key and cat_id) both representing category identifier; ambiguous which is the exact counterpart.
+subcategory_name,,0,unmatched,No corresponding column in System B for product subcategory name.
+warehouse_location_code,,0,unmatched,No corresponding column in System B for warehouse location code.
+supplier_id,vendor_key; supplier_ref,0.55,one_to_many,System B has two plausible candidates (vendor_key and supplier_ref) both representing supplier identifier; ambiguous which is the exact counterpart.
+is_active_flag,,0,unmatched,No corresponding column in System B for product active/sellable flag.
+launch_date,,0,unmatched,No corresponding column in System B for product launch date.
+discontinued_date,,0,unmatched,No corresponding column in System B for product discontinued date.
+review_count,,0,unmatched,No corresponding column in System B for total review count.
+product_image_url,,0,unmatched,No corresponding column in System B for product image URL.
+customer_id_ref,cust_id_ref; customer_id,0.55,one_to_many,System B has two plausible candidates (cust_id_ref and customer_id) both representing customer foreign key in support tickets; ambiguous which is the exact counterpart.
+ticket_status,,0,unmatched,"No corresponding column in System B for ticket status (open, resolved, escalated)."
+ticket_category,,0,unmatched,"No corresponding column in System B for ticket category (shipping, billing, product_defect)."
+resolved_timestamp,,0,unmatched,No corresponding column in System B for ticket resolution timestamp.
+related_order_id,order_ref_id; order_id,0.55,one_to_many,System B has two plausible candidates (order_ref_id and order_id) both representing related order identifier; ambiguous which is the exact counterpart.
+channel,,0,unmatched,"No corresponding column in System B for ticket submission channel (email, chat, phone)."
+escalation_flag,,0,unmatched,No corresponding column in System B for ticket escalation flag.
+campaign_type,,0,unmatched,"No corresponding column in System B for campaign type (email, social, display_ads)."
+campaign_end_date,,0,unmatched,No corresponding column in System B for campaign end date.
+campaign_spend_usd,,0,unmatched,No corresponding column in System B for campaign actual spend.
+impressions_count,,0,unmatched,"No direct match; engagement_total combines impressions and clicks, making it unsuitable as a clean mapping."
+clicks_count,,0,unmatched,"No direct match; engagement_total combines impressions and clicks, making it unsuitable as a clean mapping."
+conversions_count,,0,unmatched,No corresponding column in System B for campaign conversions count.
+conversion_rate,,0,unmatched,No corresponding column in System B for campaign conversion rate.
+campaign_owner_id,,0,unmatched,No corresponding column in System B for campaign owner employee ID.
+campaign_channel_url,,0,unmatched,No corresponding column in System B for campaign landing page URL.
+,email_verified_flag,,b_only,Present in System B with no System A counterpart.
+,churn_risk_score,,b_only,Present in System B with no System A counterpart.
+,lifetime_value_usd,,b_only,Present in System B with no System A counterpart.
+,order_profit_margin,,b_only,Present in System B with no System A counterpart.
+,fulfillment_center_id,,b_only,Present in System B with no System A counterpart.
+,product_tax_class,,b_only,Present in System B with no System A counterpart.
+,competitor_price_usd,,b_only,Present in System B with no System A counterpart.
+,first_contact_resolution_flag,,b_only,Present in System B with no System A counterpart.
+,agent_team_name,,b_only,Present in System B with no System A counterpart.
+,attribution_model,,b_only,Present in System B with no System A counterpart.
+,data_source_system,,b_only,Present in System B with no System A counterpart.
+,etl_load_timestamp,,b_only,Present in System B with no System A counterpart.
+,fulfillment_note,,b_only,Present in System B with no System A counterpart.
+,order_flags_summary,,b_only,Present in System B with no System A counterpart.
+,engagement_total,,b_only,Present in System B with no System A counterpart.

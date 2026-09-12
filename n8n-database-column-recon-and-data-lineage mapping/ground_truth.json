@@ -1,0 +1,746 @@
+{
+  "mappings": [
+    {
+      "a_column": "customer_id",
+      "b_columns": [
+        "customer_id"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "order_id",
+      "b_columns": [
+        "order_id"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "product_id",
+      "b_columns": [
+        "product_id"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "email_address",
+      "b_columns": [
+        "email_address"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "order_status",
+      "b_columns": [
+        "order_status"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "ticket_id",
+      "b_columns": [
+        "ticket_id"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "campaign_id",
+      "b_columns": [
+        "campaign_id"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "product_sku",
+      "b_columns": [
+        "product_sku"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "payment_status",
+      "b_columns": [
+        "payment_status"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "product_name",
+      "b_columns": [
+        "product_name"
+      ],
+      "pattern": "identical"
+    },
+    {
+      "a_column": "first_name",
+      "b_columns": [
+        "cust_first_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "last_name",
+      "b_columns": [
+        "cust_last_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "phone_number",
+      "b_columns": [
+        "contact_phone"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "date_of_birth",
+      "b_columns": [
+        "birth_dt"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "registration_date",
+      "b_columns": [
+        "acct_created_ts"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "account_status",
+      "b_columns": [
+        "status_cd"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "billing_city",
+      "b_columns": [
+        "bill_city_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "billing_postal_code",
+      "b_columns": [
+        "bill_zip"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "customer_id_fk",
+      "b_columns": [
+        "cust_id"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "order_date",
+      "b_columns": [
+        "order_ts"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "payment_method",
+      "b_columns": [
+        "pay_method_cd"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "shipping_city",
+      "b_columns": [
+        "ship_city_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "category_name",
+      "b_columns": [
+        "cat_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "brand_name",
+      "b_columns": [
+        "brand_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "stock_quantity",
+      "b_columns": [
+        "qty_on_hand"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "supplier_name",
+      "b_columns": [
+        "vendor_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "ticket_subject",
+      "b_columns": [
+        "subject_txt"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "ticket_priority",
+      "b_columns": [
+        "priority_lvl"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "assigned_agent_id",
+      "b_columns": [
+        "agent_id"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "campaign_name",
+      "b_columns": [
+        "campaign_nm"
+      ],
+      "pattern": "exact_rename"
+    },
+    {
+      "a_column": "loyalty_points_balance",
+      "b_columns": [
+        "reward_credits"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "marketing_opt_in",
+      "b_columns": [
+        "consent_flag"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "customer_segment",
+      "b_columns": [
+        "cust_cohort"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "acquisition_channel",
+      "b_columns": [
+        "source_medium"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "total_amount_usd",
+      "b_columns": [
+        "order_grand_total"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "shipping_method",
+      "b_columns": [
+        "delivery_speed_option"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "coupon_code",
+      "b_columns": [
+        "promo_ref"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "order_notes",
+      "b_columns": [
+        "customer_remarks"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "product_description",
+      "b_columns": [
+        "marketing_copy"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "cost_price_usd",
+      "b_columns": [
+        "wholesale_unit_cost"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "reorder_threshold",
+      "b_columns": [
+        "min_stock_trigger"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "average_rating",
+      "b_columns": [
+        "customer_star_avg"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "ticket_description",
+      "b_columns": [
+        "issue_detail_txt"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "customer_satisfaction_score",
+      "b_columns": [
+        "csat_value"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "target_audience_segment",
+      "b_columns": [
+        "audience_cohort"
+      ],
+      "pattern": "synonym"
+    },
+    {
+      "a_column": "weight_kg",
+      "b_columns": [
+        "weight_lb"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "length_cm",
+      "b_columns": [
+        "length_in"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "width_cm",
+      "b_columns": [
+        "width_in"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "height_cm",
+      "b_columns": [
+        "height_in"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "unit_price_usd",
+      "b_columns": [
+        "unit_price_cents"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "tax_amount_usd",
+      "b_columns": [
+        "tax_amount_eur"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "shipping_cost_usd",
+      "b_columns": [
+        "shipping_cost_eur"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "campaign_budget_usd",
+      "b_columns": [
+        "campaign_budget_eur"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "resolution_time_hours",
+      "b_columns": [
+        "resolution_time_minutes"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "click_through_rate",
+      "b_columns": [
+        "ctr_percentage"
+      ],
+      "pattern": "unit_change"
+    },
+    {
+      "a_column": "billing_address_line1",
+      "b_columns": [
+        "bill_street_name",
+        "bill_street_number"
+      ],
+      "pattern": "split"
+    },
+    {
+      "a_column": "shipping_address_line1",
+      "b_columns": [
+        "ship_street_name",
+        "ship_street_number"
+      ],
+      "pattern": "split"
+    },
+    {
+      "a_column": "created_timestamp",
+      "b_columns": [
+        "created_date",
+        "created_time"
+      ],
+      "pattern": "split"
+    },
+    {
+      "a_column": "campaign_start_date",
+      "b_columns": [
+        "start_year",
+        "start_month"
+      ],
+      "pattern": "split"
+    },
+    {
+      "a_column": [
+        "billing_address_line2",
+        "order_source_channel"
+      ],
+      "b_columns": [
+        "fulfillment_note"
+      ],
+      "pattern": "merge"
+    },
+    {
+      "a_column": [
+        "gift_wrap_flag",
+        "return_requested_flag"
+      ],
+      "b_columns": [
+        "order_flags_summary"
+      ],
+      "pattern": "merge"
+    },
+    {
+      "a_column": [
+        "impressions_count",
+        "clicks_count"
+      ],
+      "b_columns": [
+        "engagement_total"
+      ],
+      "pattern": "merge"
+    },
+    {
+      "a_column": "customer_id_ref",
+      "b_columns": [
+        "cust_id_ref",
+        "customer_id"
+      ],
+      "pattern": "decoy_pair",
+      "notes": "Only ONE of ['cust_id_ref', 'customer_id'] is the true match; the other is a deliberate near-duplicate decoy.",
+      "true_match": "cust_id_ref",
+      "decoy": "customer_id"
+    },
+    {
+      "a_column": "related_order_id",
+      "b_columns": [
+        "order_ref_id",
+        "order_id"
+      ],
+      "pattern": "decoy_pair",
+      "notes": "Only ONE of ['order_ref_id', 'order_id'] is the true match; the other is a deliberate near-duplicate decoy.",
+      "true_match": "order_ref_id",
+      "decoy": "order_id"
+    },
+    {
+      "a_column": "estimated_delivery_date",
+      "b_columns": [
+        "expected_delivery_dt",
+        "delivery_date"
+      ],
+      "pattern": "decoy_pair",
+      "notes": "Only ONE of ['expected_delivery_dt', 'delivery_date'] is the true match; the other is a deliberate near-duplicate decoy.",
+      "true_match": "expected_delivery_dt",
+      "decoy": "delivery_date"
+    },
+    {
+      "a_column": "subtotal_amount_usd",
+      "b_columns": [
+        "order_subtotal",
+        "net_amount"
+      ],
+      "pattern": "decoy_pair",
+      "notes": "Only ONE of ['order_subtotal', 'net_amount'] is the true match; the other is a deliberate near-duplicate decoy.",
+      "true_match": "order_subtotal",
+      "decoy": "net_amount"
+    },
+    {
+      "a_column": "category_id",
+      "b_columns": [
+        "category_key",
+        "cat_id"
+      ],
+      "pattern": "decoy_pair",
+      "notes": "Only ONE of ['category_key', 'cat_id'] is the true match; the other is a deliberate near-duplicate decoy.",
+      "true_match": "category_key",
+      "decoy": "cat_id"
+    },
+    {
+      "a_column": "supplier_id",
+      "b_columns": [
+        "vendor_key",
+        "supplier_ref"
+      ],
+      "pattern": "decoy_pair",
+      "notes": "Only ONE of ['vendor_key', 'supplier_ref'] is the true match; the other is a deliberate near-duplicate decoy.",
+      "true_match": "vendor_key",
+      "decoy": "supplier_ref"
+    },
+    {
+      "a_column": "loyalty_tier",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "billing_country_code",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "preferred_language",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "last_login_timestamp",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "discount_amount_usd",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "currency_code",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "shipping_postal_code",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "shipping_country_code",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "actual_delivery_date",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "order_channel_locale",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "subcategory_name",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "warehouse_location_code",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "is_active_flag",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "launch_date",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "discontinued_date",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "review_count",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "product_image_url",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "ticket_status",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "ticket_category",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "resolved_timestamp",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "channel",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "escalation_flag",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "campaign_type",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "campaign_end_date",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "campaign_spend_usd",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "conversions_count",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "conversion_rate",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "campaign_owner_id",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": "campaign_channel_url",
+      "b_columns": [],
+      "pattern": "dropped"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "email_verified_flag"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "churn_risk_score"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "lifetime_value_usd"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "order_profit_margin"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "fulfillment_center_id"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "product_tax_class"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "competitor_price_usd"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "first_contact_resolution_flag"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "agent_team_name"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "attribution_model"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "data_source_system"
+      ],
+      "pattern": "net_new"
+    },
+    {
+      "a_column": null,
+      "b_columns": [
+        "etl_load_timestamp"
+      ],
+      "pattern": "net_new"
+    }
+  ]
+}

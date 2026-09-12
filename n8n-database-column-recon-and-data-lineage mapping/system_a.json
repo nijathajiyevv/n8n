@@ -1,0 +1,946 @@
+{
+  "database_name": "crm_core",
+  "columns": [
+    {
+      "column_name": "customer_id",
+      "data_type": "INTEGER",
+      "description": "Unique identifier for a customer record",
+      "sample_values": [
+        10234,
+        10235,
+        10236
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "first_name",
+      "data_type": "VARCHAR(50)",
+      "description": "Customer's given name",
+      "sample_values": [
+        "Anna",
+        "Piotr",
+        "Maria"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "last_name",
+      "data_type": "VARCHAR(50)",
+      "description": "Customer's family name",
+      "sample_values": [
+        "Kowalski",
+        "Nowak",
+        "Wisniewski"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "email_address",
+      "data_type": "VARCHAR(255)",
+      "description": "Primary contact email for the customer",
+      "sample_values": [
+        "a.kowalski@mail.com"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "phone_number",
+      "data_type": "VARCHAR(20)",
+      "description": "Primary contact phone number, E.164 format",
+      "sample_values": [
+        "+48123456789"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "date_of_birth",
+      "data_type": "DATE",
+      "description": "Customer's birth date",
+      "sample_values": [
+        "1985-03-12"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "registration_date",
+      "data_type": "TIMESTAMP",
+      "description": "Date and time the customer account was created",
+      "sample_values": [
+        "2021-06-01 10:22:00"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "account_status",
+      "data_type": "VARCHAR(20)",
+      "description": "Current status of the customer account",
+      "sample_values": [
+        "active",
+        "suspended",
+        "closed"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "loyalty_tier",
+      "data_type": "VARCHAR(20)",
+      "description": "Customer's current loyalty program tier",
+      "sample_values": [
+        "gold",
+        "silver",
+        "bronze"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "loyalty_points_balance",
+      "data_type": "INTEGER",
+      "description": "Current redeemable loyalty points",
+      "sample_values": [
+        4500,
+        120,
+        0
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "billing_address_line1",
+      "data_type": "VARCHAR(255)",
+      "description": "First line of the billing address",
+      "sample_values": [
+        "ul. Marszalkowska 10"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "billing_address_line2",
+      "data_type": "VARCHAR(255)",
+      "description": "Second line of the billing address, optional",
+      "sample_values": [
+        "Apt 4B"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "billing_city",
+      "data_type": "VARCHAR(100)",
+      "description": "City for the billing address",
+      "sample_values": [
+        "Warsaw"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "billing_postal_code",
+      "data_type": "VARCHAR(20)",
+      "description": "Postal code for the billing address",
+      "sample_values": [
+        "00-001"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "billing_country_code",
+      "data_type": "CHAR(2)",
+      "description": "ISO 3166-1 alpha-2 country code for billing",
+      "sample_values": [
+        "PL"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "preferred_language",
+      "data_type": "VARCHAR(10)",
+      "description": "ISO language code the customer prefers for communication",
+      "sample_values": [
+        "pl",
+        "en"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "marketing_opt_in",
+      "data_type": "BOOLEAN",
+      "description": "Whether the customer consented to marketing communications",
+      "sample_values": [
+        true,
+        false
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "customer_segment",
+      "data_type": "VARCHAR(30)",
+      "description": "Internal marketing segment classification",
+      "sample_values": [
+        "high_value",
+        "at_risk",
+        "new"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "acquisition_channel",
+      "data_type": "VARCHAR(50)",
+      "description": "Channel through which the customer was acquired",
+      "sample_values": [
+        "organic_search",
+        "referral"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "last_login_timestamp",
+      "data_type": "TIMESTAMP",
+      "description": "Timestamp of the customer's most recent login",
+      "sample_values": [
+        "2026-09-01 08:15:00"
+      ],
+      "table": "customers"
+    },
+    {
+      "column_name": "order_id",
+      "data_type": "INTEGER",
+      "description": "Unique identifier for an order",
+      "sample_values": [
+        500123,
+        500124
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "customer_id_fk",
+      "data_type": "INTEGER",
+      "description": "Foreign key referencing the customer who placed the order",
+      "sample_values": [
+        10234
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "order_date",
+      "data_type": "TIMESTAMP",
+      "description": "Date and time the order was placed",
+      "sample_values": [
+        "2026-08-15 14:30:00"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "order_status",
+      "data_type": "VARCHAR(20)",
+      "description": "Current fulfillment status of the order",
+      "sample_values": [
+        "shipped",
+        "pending",
+        "cancelled"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "total_amount_usd",
+      "data_type": "DECIMAL(10,2)",
+      "description": "Total order value in US dollars",
+      "sample_values": [
+        129.99,
+        45.5
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "subtotal_amount_usd",
+      "data_type": "DECIMAL(10,2)",
+      "description": "Order value before tax and shipping, in USD",
+      "sample_values": [
+        110.0
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "tax_amount_usd",
+      "data_type": "DECIMAL(10,2)",
+      "description": "Total tax charged on the order, in USD",
+      "sample_values": [
+        9.99
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "shipping_cost_usd",
+      "data_type": "DECIMAL(10,2)",
+      "description": "Shipping fee charged for the order, in USD",
+      "sample_values": [
+        10.0
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "discount_amount_usd",
+      "data_type": "DECIMAL(10,2)",
+      "description": "Total discount applied to the order, in USD",
+      "sample_values": [
+        5.0,
+        0.0
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "currency_code",
+      "data_type": "CHAR(3)",
+      "description": "ISO 4217 currency code the order was placed in",
+      "sample_values": [
+        "USD"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "payment_method",
+      "data_type": "VARCHAR(30)",
+      "description": "Method used to pay for the order",
+      "sample_values": [
+        "credit_card",
+        "paypal"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "payment_status",
+      "data_type": "VARCHAR(20)",
+      "description": "Status of payment processing for the order",
+      "sample_values": [
+        "paid",
+        "refunded",
+        "failed"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "shipping_address_line1",
+      "data_type": "VARCHAR(255)",
+      "description": "First line of the shipping address for this order",
+      "sample_values": [
+        "ul. Dluga 5"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "shipping_city",
+      "data_type": "VARCHAR(100)",
+      "description": "City for the shipping address",
+      "sample_values": [
+        "Krakow"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "shipping_postal_code",
+      "data_type": "VARCHAR(20)",
+      "description": "Postal code for the shipping address",
+      "sample_values": [
+        "30-001"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "shipping_country_code",
+      "data_type": "CHAR(2)",
+      "description": "ISO 3166-1 alpha-2 country code for shipping",
+      "sample_values": [
+        "PL"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "shipping_method",
+      "data_type": "VARCHAR(30)",
+      "description": "Selected shipping speed/method",
+      "sample_values": [
+        "standard",
+        "express"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "estimated_delivery_date",
+      "data_type": "DATE",
+      "description": "Estimated delivery date for the order",
+      "sample_values": [
+        "2026-08-20"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "actual_delivery_date",
+      "data_type": "DATE",
+      "description": "Actual date the order was delivered",
+      "sample_values": [
+        "2026-08-19"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "order_source_channel",
+      "data_type": "VARCHAR(30)",
+      "description": "Platform or channel the order originated from",
+      "sample_values": [
+        "mobile_app",
+        "web"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "coupon_code",
+      "data_type": "VARCHAR(30)",
+      "description": "Promotional coupon code applied, if any",
+      "sample_values": [
+        "SUMMER10",
+        null
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "gift_wrap_flag",
+      "data_type": "BOOLEAN",
+      "description": "Whether the order includes gift wrapping",
+      "sample_values": [
+        true,
+        false
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "order_notes",
+      "data_type": "TEXT",
+      "description": "Free-text customer notes attached to the order",
+      "sample_values": [
+        "Leave at door"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "return_requested_flag",
+      "data_type": "BOOLEAN",
+      "description": "Whether a return has been requested for this order",
+      "sample_values": [
+        false
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "order_channel_locale",
+      "data_type": "VARCHAR(10)",
+      "description": "Locale setting active when the order was placed",
+      "sample_values": [
+        "pl-PL",
+        "en-US"
+      ],
+      "table": "orders"
+    },
+    {
+      "column_name": "product_id",
+      "data_type": "INTEGER",
+      "description": "Unique identifier for a product",
+      "sample_values": [
+        8001,
+        8002
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "product_sku",
+      "data_type": "VARCHAR(50)",
+      "description": "Stock keeping unit code for the product",
+      "sample_values": [
+        "SKU-8001-BLK"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "product_name",
+      "data_type": "VARCHAR(255)",
+      "description": "Display name of the product",
+      "sample_values": [
+        "Wireless Mouse"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "product_description",
+      "data_type": "TEXT",
+      "description": "Marketing description of the product",
+      "sample_values": [
+        "Ergonomic wireless mouse with USB-C charging"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "category_id",
+      "data_type": "INTEGER",
+      "description": "Foreign key referencing the product category",
+      "sample_values": [
+        12
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "category_name",
+      "data_type": "VARCHAR(100)",
+      "description": "Name of the product category",
+      "sample_values": [
+        "Electronics"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "subcategory_name",
+      "data_type": "VARCHAR(100)",
+      "description": "Name of the product subcategory",
+      "sample_values": [
+        "Computer Accessories"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "brand_name",
+      "data_type": "VARCHAR(100)",
+      "description": "Brand or manufacturer name",
+      "sample_values": [
+        "LogiTech"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "unit_price_usd",
+      "data_type": "DECIMAL(10,2)",
+      "description": "Standard retail price per unit, in USD",
+      "sample_values": [
+        29.99
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "cost_price_usd",
+      "data_type": "DECIMAL(10,2)",
+      "description": "Wholesale/cost price per unit, in USD",
+      "sample_values": [
+        12.5
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "weight_kg",
+      "data_type": "DECIMAL(6,3)",
+      "description": "Product weight in kilograms",
+      "sample_values": [
+        0.095
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "length_cm",
+      "data_type": "DECIMAL(6,2)",
+      "description": "Product length in centimeters",
+      "sample_values": [
+        10.5
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "width_cm",
+      "data_type": "DECIMAL(6,2)",
+      "description": "Product width in centimeters",
+      "sample_values": [
+        6.2
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "height_cm",
+      "data_type": "DECIMAL(6,2)",
+      "description": "Product height in centimeters",
+      "sample_values": [
+        3.8
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "stock_quantity",
+      "data_type": "INTEGER",
+      "description": "Current available inventory count",
+      "sample_values": [
+        452
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "warehouse_location_code",
+      "data_type": "VARCHAR(20)",
+      "description": "Code identifying the warehouse storing this product",
+      "sample_values": [
+        "WH-EU-01"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "reorder_threshold",
+      "data_type": "INTEGER",
+      "description": "Inventory level at which restocking is triggered",
+      "sample_values": [
+        50
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "supplier_id",
+      "data_type": "INTEGER",
+      "description": "Foreign key referencing the supplying vendor",
+      "sample_values": [
+        301
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "supplier_name",
+      "data_type": "VARCHAR(100)",
+      "description": "Name of the product supplier",
+      "sample_values": [
+        "TechSource Ltd"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "is_active_flag",
+      "data_type": "BOOLEAN",
+      "description": "Whether the product is currently sellable",
+      "sample_values": [
+        true
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "launch_date",
+      "data_type": "DATE",
+      "description": "Date the product was first listed for sale",
+      "sample_values": [
+        "2024-01-15"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "discontinued_date",
+      "data_type": "DATE",
+      "description": "Date the product was discontinued, if applicable",
+      "sample_values": [
+        null
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "average_rating",
+      "data_type": "DECIMAL(3,2)",
+      "description": "Average customer star rating out of 5",
+      "sample_values": [
+        4.35
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "review_count",
+      "data_type": "INTEGER",
+      "description": "Total number of customer reviews",
+      "sample_values": [
+        287
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "product_image_url",
+      "data_type": "VARCHAR(500)",
+      "description": "URL of the primary product image",
+      "sample_values": [
+        "https://cdn.example.com/8001.jpg"
+      ],
+      "table": "products"
+    },
+    {
+      "column_name": "ticket_id",
+      "data_type": "INTEGER",
+      "description": "Unique identifier for a support ticket",
+      "sample_values": [
+        90001
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "customer_id_ref",
+      "data_type": "INTEGER",
+      "description": "Foreign key referencing the customer who filed the ticket",
+      "sample_values": [
+        10234
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "ticket_subject",
+      "data_type": "VARCHAR(255)",
+      "description": "Short subject line describing the issue",
+      "sample_values": [
+        "Order not received"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "ticket_description",
+      "data_type": "TEXT",
+      "description": "Full description of the customer's issue",
+      "sample_values": [
+        "Package tracking shows delivered but not received"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "ticket_priority",
+      "data_type": "VARCHAR(20)",
+      "description": "Assigned priority level of the ticket",
+      "sample_values": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "ticket_status",
+      "data_type": "VARCHAR(20)",
+      "description": "Current status of the support ticket",
+      "sample_values": [
+        "open",
+        "resolved",
+        "escalated"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "ticket_category",
+      "data_type": "VARCHAR(50)",
+      "description": "Categorization of the issue type",
+      "sample_values": [
+        "shipping",
+        "billing",
+        "product_defect"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "assigned_agent_id",
+      "data_type": "INTEGER",
+      "description": "Foreign key referencing the support agent handling the ticket",
+      "sample_values": [
+        55
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "created_timestamp",
+      "data_type": "TIMESTAMP",
+      "description": "Timestamp the ticket was created",
+      "sample_values": [
+        "2026-08-20 09:00:00"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "resolved_timestamp",
+      "data_type": "TIMESTAMP",
+      "description": "Timestamp the ticket was resolved",
+      "sample_values": [
+        "2026-08-21 16:45:00"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "resolution_time_hours",
+      "data_type": "DECIMAL(8,2)",
+      "description": "Total hours elapsed between creation and resolution",
+      "sample_values": [
+        31.75
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "customer_satisfaction_score",
+      "data_type": "INTEGER",
+      "description": "Post-resolution satisfaction rating, 1-5 scale",
+      "sample_values": [
+        4
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "related_order_id",
+      "data_type": "INTEGER",
+      "description": "Foreign key referencing the order this ticket relates to, if any",
+      "sample_values": [
+        500123
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "channel",
+      "data_type": "VARCHAR(30)",
+      "description": "Channel through which the ticket was submitted",
+      "sample_values": [
+        "email",
+        "chat",
+        "phone"
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "escalation_flag",
+      "data_type": "BOOLEAN",
+      "description": "Whether the ticket has been escalated to tier 2 support",
+      "sample_values": [
+        false
+      ],
+      "table": "support_tickets"
+    },
+    {
+      "column_name": "campaign_id",
+      "data_type": "INTEGER",
+      "description": "Unique identifier for a marketing campaign",
+      "sample_values": [
+        7001
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_name",
+      "data_type": "VARCHAR(255)",
+      "description": "Display name of the campaign",
+      "sample_values": [
+        "Summer Sale 2026"
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_type",
+      "data_type": "VARCHAR(50)",
+      "description": "Type of marketing campaign",
+      "sample_values": [
+        "email",
+        "social",
+        "display_ads"
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_start_date",
+      "data_type": "DATE",
+      "description": "Date the campaign began running",
+      "sample_values": [
+        "2026-06-01"
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_end_date",
+      "data_type": "DATE",
+      "description": "Date the campaign ended or is scheduled to end",
+      "sample_values": [
+        "2026-06-30"
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_budget_usd",
+      "data_type": "DECIMAL(12,2)",
+      "description": "Allocated budget for the campaign, in USD",
+      "sample_values": [
+        50000.0
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_spend_usd",
+      "data_type": "DECIMAL(12,2)",
+      "description": "Actual amount spent on the campaign so far, in USD",
+      "sample_values": [
+        42300.5
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "impressions_count",
+      "data_type": "BIGINT",
+      "description": "Total number of ad impressions served",
+      "sample_values": [
+        1250000
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "clicks_count",
+      "data_type": "BIGINT",
+      "description": "Total number of clicks recorded",
+      "sample_values": [
+        34500
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "conversions_count",
+      "data_type": "INTEGER",
+      "description": "Total number of conversions attributed to the campaign",
+      "sample_values": [
+        890
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "click_through_rate",
+      "data_type": "DECIMAL(6,4)",
+      "description": "Ratio of clicks to impressions",
+      "sample_values": [
+        0.0276
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "conversion_rate",
+      "data_type": "DECIMAL(6,4)",
+      "description": "Ratio of conversions to clicks",
+      "sample_values": [
+        0.0258
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "target_audience_segment",
+      "data_type": "VARCHAR(100)",
+      "description": "Audience segment the campaign targets",
+      "sample_values": [
+        "existing_customers"
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_owner_id",
+      "data_type": "INTEGER",
+      "description": "Foreign key referencing the employee who owns the campaign",
+      "sample_values": [
+        201
+      ],
+      "table": "campaigns"
+    },
+    {
+      "column_name": "campaign_channel_url",
+      "data_type": "VARCHAR(500)",
+      "description": "Landing page URL used by the campaign",
+      "sample_values": [
+        "https://example.com/summer-sale"
+      ],
+      "table": "campaigns"
+    }
+  ]
+}
