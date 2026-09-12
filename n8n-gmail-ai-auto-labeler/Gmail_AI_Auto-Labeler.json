@@ -1,0 +1,777 @@
+{
+  "name": "Gmail AI Auto-Labeler",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {
+          "readStatus": "unread"
+        }
+      },
+      "id": "6173e6f1-b353-484d-a8a2-73985c869f19",
+      "name": "Gmail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1200,
+        896
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize the incoming Gmail item into a compact object for the AI prompt.\nconst msg = $input.item.json;\n\nconst subject = msg.subject || msg.Subject || '';\nconst from = msg.from || msg.From || '';\nconst snippet = msg.snippet || '';\nconst textBody = (msg.text || msg.textPlain || msg.textHtml || '').toString().slice(0, 1500);\nconst messageId = msg.id;\nconst threadId = msg.threadId;\n\nreturn {\n  json: {\n    messageId,\n    threadId,\n    from,\n    subject,\n    bodyPreview: textBody || snippet\n  }\n};"
+      },
+      "id": "ca86d79d-1f88-44dd-96b9-27a2f93d8d26",
+      "name": "Prepare Email Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -976,
+        896
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.item.json;\nlet category = 'Other';\nlet debugReason = '';\n\nconst raw = (response.output || '').toString().trim();\n\nif (!raw) {\n  debugReason = 'EMPTY_OUTPUT: ' + JSON.stringify(response).slice(0, 300);\n} else {\n  const cleaned = raw.replace(/[*_`\"'.,:;]/g, '').trim();\n  const allowedCheck = ['Newsletters','Advertisings','Security','Orders_Shipping','Payments_Receipts','Appointments','Work','Events_Meetups','Real_Estate','Social_Notifications','Other'];\n  const found = allowedCheck.find(c => cleaned === c)\n    || allowedCheck.find(c => cleaned.includes(c));\n  if (found) {\n    category = found;\n  } else {\n    debugReason = 'NO_MATCHING_CATEGORY_IN_RESPONSE: ' + raw.slice(0, 300);\n  }\n}\n\nconst allowed = ['Newsletters','Advertisings','Security','Orders_Shipping','Payments_Receipts','Appointments','Work','Events_Meetups','Real_Estate','Social_Notifications','Other'];\nif (!allowed.includes(category)) {\n  if (!debugReason) debugReason = 'CATEGORY_NOT_IN_ALLOWED_LIST: ' + category;\n  category = 'Other';\n}\n\nconst prev = $items('Prepare Email Data')[$itemIndex].json;\n\nreturn {\n  json: {\n    messageId: prev.messageId,\n    threadId: prev.threadId,\n    category,\n    _debugReason: debugReason\n  }\n};"
+      },
+      "id": "2832a1f8-e76f-4737-8d43-adda2dd664b2",
+      "name": "Parse Category",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        896
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Newsletters",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "871c982a-1750-4fdd-a787-5710baadced7"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Newsletters"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Advertisings",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "86506d9b-0181-4da4-a69e-79ae07c1eead"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Advertisings"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Security",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "f2e242b1-f815-4807-b794-08a81525ac94"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Security"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Orders_Shipping",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "833f30c5-dae6-4c10-8693-4ab05a81e6a2"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Orders_Shipping"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Payments_Receipts",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "e045177f-a34d-4c40-af12-56a344035e5e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Payments_Receipts"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Appointments",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "e57b2c4e-fced-4796-9e0b-d099d77b88e1"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Appointments"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Work",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "bfa3f5c2-529c-4e41-a92c-83a5c04a3971"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Work"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Events_Meetups",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "20d5ab67-c522-4166-bf54-8f1c3a07ac28"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Events_Meetups"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Real_Estate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "bf5ef10d-22c6-4c39-a778-8d406d48799a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Real_Estate"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.category }}",
+                    "rightValue": "Social_Notifications",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "fd52c873-e741-493a-b6cb-f8356880f9f5"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Social_Notifications"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Other"
+        }
+      },
+      "id": "a2bc9d24-09a7-4a91-8a33-b59ce57814a2",
+      "name": "Route by Category",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -176,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_NEWSLETTERS_LABEL_ID"
+        ]
+      },
+      "id": "f4302592-a0a2-4ca4-b426-efe7deb0a63f",
+      "name": "Label: Newsletters",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        -64
+      ],
+      "webhookId": "dbe57dfa-83d9-4e04-afd8-2b34c4724a5a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_SECURITY_LABEL_ID"
+        ]
+      },
+      "id": "c9d272b5-7d52-4e41-a69a-f78409307d4c",
+      "name": "Label: Security",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        320
+      ],
+      "webhookId": "0d0467cf-438c-4a1c-83a5-e974eb057e9d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_ORDERS_SHIPPING_LABEL_ID"
+        ]
+      },
+      "id": "91c1b9b9-cf3a-4290-8666-cace09f1c2cf",
+      "name": "Label: Orders_Shipping",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        512
+      ],
+      "webhookId": "0aec60b3-3582-4235-bc06-79ca1c60daf8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_PAYMENTS_RECEIPTS_LABEL_ID"
+        ]
+      },
+      "id": "f2d82cdc-a320-4da0-adaa-1587ad493337",
+      "name": "Label: Payments_Receipts",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        704
+      ],
+      "webhookId": "2527ff4b-1527-4399-b09f-24f0869d9d9c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_APPOINTMENTS_LABEL_ID"
+        ]
+      },
+      "id": "b3b55490-5bd3-4a31-89da-e6acc3e71175",
+      "name": "Label: Appointments",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        896
+      ],
+      "webhookId": "fc71c71a-f2dd-4a5d-8536-16886b8b85f4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_WORK_LABEL_ID"
+        ]
+      },
+      "id": "7298cb5b-a5df-418a-b37a-30ce406d32d4",
+      "name": "Label: Work",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        1088
+      ],
+      "webhookId": "20ebab9f-2873-4b99-9bbc-48f1b762a374",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_EVENTS_MEETUPS_LABEL_ID"
+        ]
+      },
+      "id": "5a3e0349-9f53-4a2e-8e12-ae7830b707f9",
+      "name": "Label: Events_Meetups",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        1280
+      ],
+      "webhookId": "ce39eabf-068b-4bcf-99f3-58796d9597a2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_REAL_ESTATE_LABEL_ID"
+        ]
+      },
+      "id": "992788fb-0274-468c-a5eb-591e8c6bc6d2",
+      "name": "Label: Real_Estate",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        1472
+      ],
+      "webhookId": "3cde120e-cf00-420f-bfd3-1c665274b7b2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_SOCIAL_NOTIFICATIONS_LABEL_ID"
+        ]
+      },
+      "id": "d1095cce-08d5-42e1-92ce-3713c471b172",
+      "name": "Label: Social_Notifications",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        1856
+      ],
+      "webhookId": "fbf8d796-ef7a-42fb-8d60-8b569c7aca68",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_OTHER_LABEL_ID"
+        ]
+      },
+      "id": "86d57154-9b1f-4a40-a202-498a601cfef2",
+      "name": "Label: Other",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        1664
+      ],
+      "webhookId": "4b31179b-5709-4afa-98b4-4ebc73e3ff08",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=As a administrative supporter, review email preview {{ $json.bodyPreview }}, understand it and label one of the 10 categories. For example:\nNewsletters - Recurring digest or content emails from subscribed publications, blogs, or paid newsletter platforms. Largest volume category by far.\nAdvertisings - Marketing, upsell, or promotional emails from vendors or services you use.\nSecurity - Sign-in alerts, new device alerts, breach warnings, card/account expiry notices.\nOrders_Shipping - Order confirmations, shipping updates, returns, delivery complaints from retail or logistics services.\nPayments_Receipts - Payment receipts, invoices, direct debit notices, subscription billing.\nAppointments - Booking confirmations for services (medical, fitness, personal care, etc).\nWork - SaaS notifications, webhooks, tool alerts, workplace platform notifications.\nEvents_Meetups - Course sessions, demos, meetups, conferences, webinars.\nReal_Estate - Property listings or real estate platform notifications.\nSocial_Notifications - Social platform, group, or community digest notifications.\n\nRespond with ONLY the category name exactly as spelled above. Nothing else. No explanation. No reasoning. No markdown. No bold text. No punctuation. No quotes. One word or one underscored phrase, then stop.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -752,
+        896
+      ],
+      "id": "bff7304f-6d42-4095-a76b-fe1a1a7fc33e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.messageId }}",
+        "labelIds": [
+          "REPLACE_WITH_YOUR_ADVERTISINGS_LABEL_ID"
+        ]
+      },
+      "id": "d287fa17-8387-46cf-a336-d5592b474174",
+      "name": "Label: Advertisings",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        128
+      ],
+      "webhookId": "e738b2ac-a8cd-49f9-886b-c87f4e375dc2",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-3-haiku",
+        "options": {
+          "maxTokens": 100,
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        1104
+      ],
+      "id": "b1139af8-01ac-4487-b0ad-05b75b2e3b53",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "YOUR_OPENROUTER_CREDENTIAL_ID",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Email Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Email Data": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Category": {
+      "main": [
+        [
+          {
+            "node": "Route by Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Category": {
+      "main": [
+        [
+          {
+            "node": "Label: Newsletters",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Advertisings",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Security",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Orders_Shipping",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Payments_Receipts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Appointments",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Work",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Events_Meetups",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Real_Estate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Social_Notifications",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Label: Other",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Parse Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "timezone": "Europe/Warsaw",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "c1af7351-04ab-4676-9a3c-18645c7015e1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "380ff819de91a9f0c1541c294cfbb75150fbc298ef2f36973f74572aa114f209"
+  },
+  "nodeGroups": [],
+  "id": "22VdR9XhPptgt7MZ",
+  "tags": []
+}
