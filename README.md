@@ -1,7 +1,5 @@
 # n8n
 
-# n8n Workflows
-
 Personal collection of n8n workflow automations. Each subfolder is one standalone project: an exported workflow JSON plus a README explaining what it does, why it exists, and how to set it up.
 
 ## Structure
